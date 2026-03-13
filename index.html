@@ -2,325 +2,128 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SPA210 Invitation</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Cormorant+Garamond:wght@300;400&display=swap" rel="stylesheet">
+<title>SPA210 Private Opening</title>
 
 <style>
-html,body{
+
+body{
 margin:0;
-height:100%;
-overflow:hidden;
-background:#0f0f10;
-font-family:'Cormorant Garamond', serif;
-color:#f4f1ea;
-}
-
-/* INTRO */
-#intro{
-position:fixed;
-inset:0;
+padding:0;
+background:#000;
 display:flex;
-flex-direction:column;
-align-items:center;
 justify-content:center;
-gap:28px;
-z-index:10;
+align-items:center;
+height:100vh;
+font-family:Georgia, serif;
+color:white;
+overflow:hidden;
 }
 
-.introTitle{
-font-family:'Cinzel', serif;
+.container{
 text-align:center;
+position:relative;
 }
 
 .title{
-font-size:28px;
-letter-spacing:.22em;
-margin-bottom:6px;
+font-size:32px;
+letter-spacing:4px;
+margin-bottom:20px;
 }
 
-.subtitle{
-font-size:13px;
-letter-spacing:.35em;
-opacity:.85;
+.image-box{
+position:relative;
+display:inline-block;
 }
 
-.heroImg{
-width:88vw;
-max-width:520px;
-max-height:55vh;
-object-fit:contain;
-box-shadow:0 24px 70px rgba(0,0,0,.55);
+.main-image{
+width:420px;
 border-radius:10px;
 }
 
-.enterBtn{
-padding:14px 36px;
-border-radius:999px;
-border:1.5px solid #f4f1ea;
-background:transparent;
-color:#f4f1ea;
-font-family:'Cinzel', serif;
-font-size:14px;
-letter-spacing:.25em;
-font-weight:700;
+.enter{
+margin-top:20px;
+font-size:22px;
+letter-spacing:6px;
 cursor:pointer;
-box-shadow:0 8px 24px rgba(0,0,0,.35);
+transition:0.3s;
 }
 
-/* STEAM */
-.steam{
-position:fixed;
-inset:0;
-pointer-events:none;
-overflow:hidden;
-z-index:1;
+.enter:hover{
+opacity:0.6;
 }
 
-.steam span{
-position:absolute;
-bottom:-120px;
-width:160px;
-height:160px;
-border-radius:50%;
-background:radial-gradient(circle,
-rgba(255,255,255,.16) 0%,
-rgba(255,255,255,.07) 40%,
-transparent 70%);
-filter:blur(10px);
-animation:steamUp linear infinite;
-opacity:0;
-}
-
-.steam span:nth-child(1){left:10%;animation-duration:22s}
-.steam span:nth-child(2){left:30%;animation-duration:26s;animation-delay:4s}
-.steam span:nth-child(3){left:55%;animation-duration:24s;animation-delay:2s}
-.steam span:nth-child(4){left:75%;animation-duration:28s;animation-delay:6s}
-.steam span:nth-child(5){left:90%;animation-duration:23s;animation-delay:1s}
-
-@keyframes steamUp{
-0%{transform:translateY(0) scale(.8);opacity:0}
-15%{opacity:.25}
-50%{opacity:.18}
-100%{transform:translateY(-110vh) scale(1.4);opacity:0}
-}
-
-/* BEES */
-#bees{
-position:absolute;
-top:8%;
-left:-250px;
-}
+/* bees */
 
 .bee{
 position:absolute;
-width:70px;
+width:60px;
+pointer-events:none;
 }
 
-.bee1{top:0}
-.bee2{top:60px}
-.bee3{top:120px}
+/* bee 1 */
+.bee1{
+top:-40px;
+left:-60px;
+animation:beeFloat1 6s infinite ease-in-out;
+}
 
-/* LETTER */
-#letter{
-position:absolute;
+/* bee 2 */
+.bee2{
 top:40%;
-left:50%;
-transform:translateX(-50%);
-opacity:0;
-cursor:pointer;
+right:-70px;
+animation:beeFloat2 7s infinite linear;
 }
 
-.letterImg{
-width:300px;
+/* bee 3 */
+.bee3{
+bottom:-50px;
+left:40%;
+animation:beeFloat3 5s infinite ease-in-out;
 }
 
-/* HINT */
-#hint{
-position:absolute;
-top:calc(40% + 340px);
-left:50%;
-transform:translateX(-50%);
-font-family:'Cinzel', serif;
-font-size:16px;
-letter-spacing:4px;
-color:#f4f1ea;
-opacity:0;
+/* animations */
+
+@keyframes beeFloat1{
+0%{transform:translate(0,0) rotate(0deg);}
+25%{transform:translate(40px,-20px) rotate(10deg);}
+50%{transform:translate(80px,10px) rotate(-10deg);}
+75%{transform:translate(40px,20px) rotate(5deg);}
+100%{transform:translate(0,0) rotate(0deg);}
 }
 
-/* INVITE */
-#invite{
-position:fixed;
-inset:0;
-display:none;
-align-items:center;
-justify-content:center;
+@keyframes beeFloat2{
+0%{transform:translate(0,0);}
+50%{transform:translate(-60px,-40px);}
+100%{transform:translate(0,0);}
 }
 
-.scrollWrap{
-position:relative;
-width:90vw;
-max-width:760px;
+@keyframes beeFloat3{
+0%{transform:translate(0,0);}
+50%{transform:translate(20px,-50px);}
+100%{transform:translate(0,0);}
 }
 
-.scrollTop,.scrollBottom{
-position:absolute;
-left:0;
-width:100%;
-height:50%;
-background:#0f0f10;
-z-index:2;
-}
-
-.scrollTop{
-top:0;
-transform-origin:top;
-animation:openTop 1.2s ease-out forwards;
-}
-
-.scrollBottom{
-bottom:0;
-transform-origin:bottom;
-animation:openBottom 1.2s ease-out forwards;
-}
-
-@keyframes openTop{to{transform:scaleY(0)}}
-@keyframes openBottom{to{transform:scaleY(0)}}
-
-.card{
-width:100%;
-border-radius:8px;
-box-shadow:0 24px 70px rgba(0,0,0,.6);
-}
-
-/* GOLD SHIMMER */
-.cardWrap{position:relative}
-
-.cardWrap::after{
-content:'';
-position:absolute;
-inset:0;
-background:linear-gradient(
-120deg,
-transparent 0%,
-rgba(255,215,120,0) 35%,
-rgba(255,215,120,.55) 50%,
-rgba(255,215,120,0) 65%,
-transparent 100%);
-transform:translateX(-120%);
-}
-
-.cardWrap.shimmer::after{
-animation:goldSweep 1.8s ease-out forwards;
-}
-
-@keyframes goldSweep{to{transform:translateX(120%)}}
 </style>
 </head>
 
 <body>
 
-<!-- INTRO -->
-<div id="intro">
-<div class="introTitle">
-<div class="title">SPA210</div>
-<div class="subtitle">PRIVATE OPENING</div>
-</div>
+<div class="container">
 
-<img src="spa.png" class="heroImg">
+<div class="title">SPA210 PRIVATE OPENING</div>
 
-<div class="enterBtn">ENTER</div>
-</div>
+<div class="image-box">
 
-<!-- STEAM -->
-<div class="steam">
-<span></span><span></span><span></span><span></span><span></span>
-</div>
+<img class="main-image" src="YOUR_MAIN_IMAGE.jpg">
 
-<!-- BEES -->
-<div id="bees">
-<img src="bee1.png" class="bee bee1">
-<img src="bee2.png" class="bee bee2">
-<img src="bee3.png" class="bee bee3">
-</div>
-
-<!-- LETTER -->
-<div id="letter">
-<img src="letter.png" class="letterImg">
-</div>
-
-<div id="hint">Tap the letter</div>
-
-<!-- INVITE -->
-<div id="invite">
-<div class="scrollWrap">
-<div class="scrollTop"></div>
-<div class="scrollBottom"></div>
-
-<div class="cardWrap">
-<img src="invite.png" class="card">
-</div>
+<img class="bee bee1" src="YOUR_BEE1.png">
+<img class="bee bee2" src="YOUR_BEE2.png">
+<img class="bee bee3" src="YOUR_BEE3.png">
 
 </div>
+
+<div class="enter">ENTER</div>
+
 </div>
-
-<!-- MUSIC -->
-<audio id="zen" loop>
-<source src="zen.mp3" type="audio/mpeg">
-</audio>
-
-<script>
-const intro=document.getElementById("intro");
-const enterBtn=document.querySelector(".enterBtn");
-const bees=document.getElementById("bees");
-const letter=document.getElementById("letter");
-const hint=document.getElementById("hint");
-const invite=document.getElementById("invite");
-const zen=document.getElementById("zen");
-const cardWrap=document.querySelector(".cardWrap");
-
-enterBtn.onclick=()=>{
-
-intro.style.display="none";
-
-zen.volume=0;
-zen.play();
-
-let v=0;
-const fade=setInterval(()=>{
-if(v<0.22){v+=0.02;zen.volume=v;}
-else clearInterval(fade);
-},200);
-
-bees.animate(
-[{left:"-250px"},{left:"50%",transform:"translateX(-50%)"}],
-{duration:4500,fill:"forwards",easing:"ease-out"}
-);
-
-setTimeout(()=>{
-letter.animate(
-[
-{transform:"translate(-50%,-220px)",opacity:0},
-{transform:"translate(-50%,20px)",opacity:1},
-{transform:"translate(-50%,0)",opacity:1}
-],
-{duration:1400,fill:"forwards",easing:"ease-out"}
-);
-},4600);
-
-setTimeout(()=>{hint.style.opacity=1},7800);
-
-};
-
-letter.onclick=()=>{
-bees.style.display="none";
-letter.style.display="none";
-hint.style.display="none";
-invite.style.display="flex";
-setTimeout(()=>cardWrap.classList.add("shimmer"),300);
-};
-</script>
 
 </body>
-</html>
