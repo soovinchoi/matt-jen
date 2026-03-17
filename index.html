@@ -103,13 +103,12 @@ opacity:0;
 /* 🐝 BEES */
 .bee{
 position:absolute;
-width:clamp(45px, 9vw, 70px);
-left:-120px;
+width:clamp(55px, 10vw, 80px);
 }
 
-#bee1{ top:6%; }
-#bee2{ top:14%; }
-#bee3{ top:22%; }
+#bee1{ top:6%; left:-140px; }
+#bee2{ top:16%; left:-160px; }
+#bee3{ top:12%; right:-140px; }
 
 /* LETTER */
 #letter{
@@ -204,7 +203,7 @@ animation:goldSweep 1.8s forwards;
 
 <div class="steam"><span></span><span></span><span></span></div>
 
-<!-- BEES -->
+<!-- 🐝 BEES -->
 <img src="bee1.png" class="bee" id="bee1">
 <img src="bee2.png" class="bee" id="bee2">
 <img src="bee3.png" class="bee" id="bee3">
@@ -238,7 +237,6 @@ const zen=document.getElementById("zen");
 const cardWrap=document.querySelector(".cardWrap");
 
 enterBtn.onclick=()=>{
-
 document.getElementById("intro").style.display="none";
 
 /* music */
@@ -250,26 +248,27 @@ if(v<0.22){v+=0.02;zen.volume=v;}
 else clearInterval(fade);
 },200);
 
-/* 🐝 DIFFERENT PATHS */
+/* 🐝 left bees */
 bee1.animate([
 {transform:"translate(0,0)"},
-{transform:"translate(30vw,-30px)"},
-{transform:"translate(70vw,10px)"},
-{transform:"translate(110vw,-10px)"}
+{transform:"translate(40vw,-30px)"},
+{transform:"translate(80vw,10px)"},
+{transform:"translate(120vw,-10px)"}
 ],{duration:4200,easing:"ease-out"});
 
 bee2.animate([
 {transform:"translate(0,0)"},
-{transform:"translate(40vw,40px)"},
-{transform:"translate(80vw,-20px)"},
-{transform:"translate(120vw,0)"}
+{transform:"translate(50vw,40px)"},
+{transform:"translate(90vw,-20px)"},
+{transform:"translate(130vw,0)"}
 ],{duration:5000,easing:"ease-out"});
 
+/* 🐝 right bee */
 bee3.animate([
 {transform:"translate(0,0)"},
-{transform:"translate(35vw,-50px)"},
-{transform:"translate(75vw,30px)"},
-{transform:"translate(115vw,-20px)"}
+{transform:"translate(-40vw,-40px)"},
+{transform:"translate(-80vw,20px)"},
+{transform:"translate(-120vw,-10px)"}
 ],{duration:4600,easing:"ease-out"});
 
 /* letter */
