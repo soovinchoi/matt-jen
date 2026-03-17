@@ -8,7 +8,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Cormorant+Garamond:wght@300;400&display=swap" rel="stylesheet">
 
 <style>
-
 html,body{
 margin:0;
 height:100%;
@@ -18,6 +17,7 @@ font-family:'Cormorant Garamond', serif;
 color:#f4f1ea;
 }
 
+/* INTRO */
 #intro{
 position:fixed;
 inset:0;
@@ -29,21 +29,19 @@ gap:28px;
 z-index:10;
 }
 
-.introTitle{
+.title{
 font-family:'Cinzel', serif;
+font-size:28px;
+letter-spacing:.22em;
 text-align:center;
 }
 
-.title{
-font-size:28px;
-letter-spacing:.22em;
-margin-bottom:6px;
-}
-
 .subtitle{
+font-family:'Cinzel', serif;
 font-size:13px;
 letter-spacing:.35em;
 opacity:.85;
+text-align:center;
 }
 
 .heroImg{
@@ -64,13 +62,10 @@ color:#f4f1ea;
 font-family:'Cinzel', serif;
 font-size:14px;
 letter-spacing:.25em;
-font-weight:700;
 cursor:pointer;
-box-shadow:0 8px 24px rgba(0,0,0,.35);
 }
 
 /* STEAM */
-
 .steam{
 position:fixed;
 inset:0;
@@ -97,8 +92,6 @@ opacity:0;
 .steam span:nth-child(1){left:10%;animation-duration:22s}
 .steam span:nth-child(2){left:30%;animation-duration:26s;animation-delay:4s}
 .steam span:nth-child(3){left:55%;animation-duration:24s;animation-delay:2s}
-.steam span:nth-child(4){left:75%;animation-duration:28s;animation-delay:6s}
-.steam span:nth-child(5){left:90%;animation-duration:23s;animation-delay:1s}
 
 @keyframes steamUp{
 0%{transform:translateY(0) scale(.8);opacity:0}
@@ -107,23 +100,18 @@ opacity:0;
 100%{transform:translateY(-110vh) scale(1.4);opacity:0}
 }
 
-/* BEES */
-
-#bee1,#bee2,#bee3{
+/* 🐝 BEES */
+.bee{
 position:absolute;
-width:90px;
-left:-200px;
+width:clamp(36px, 8vw, 60px);
+top:4%;
+left:-120px;
 }
 
-#bee1{top:20%;}
-#bee2{top:50%;}
-#bee3{top:70%;}
-
 /* LETTER */
-
 #letter{
 position:absolute;
-top:40%;
+top:42%;
 left:50%;
 transform:translateX(-50%);
 opacity:0;
@@ -135,10 +123,9 @@ width:300px;
 }
 
 /* HINT */
-
 #hint{
 position:absolute;
-top:calc(40% + 340px);
+top:calc(42% + 320px);
 left:50%;
 transform:translateX(-50%);
 font-family:'Cinzel', serif;
@@ -148,7 +135,6 @@ opacity:0;
 }
 
 /* INVITE */
-
 #invite{
 position:fixed;
 inset:0;
@@ -194,7 +180,6 @@ box-shadow:0 24px 70px rgba(0,0,0,.6);
 }
 
 /* GOLD SHIMMER */
-
 .cardWrap{position:relative}
 
 .cardWrap::after{
@@ -214,17 +199,15 @@ transform:translateX(-120%);
 animation:goldSweep 1.8s ease-out forwards;
 }
 
-@keyframes goldSweep{
-to{transform:translateX(120%)}
-}
-
+@keyframes goldSweep{to{transform:translateX(120%)}}
 </style>
 </head>
 
 <body>
 
+<!-- INTRO -->
 <div id="intro">
-<div class="introTitle">
+<div>
 <div class="title">SPA210</div>
 <div class="subtitle">PRIVATE OPENING</div>
 </div>
@@ -234,27 +217,33 @@ to{transform:translateX(120%)}
 <div class="enterBtn">ENTER</div>
 </div>
 
+<!-- STEAM -->
 <div class="steam">
-<span></span><span></span><span></span><span></span><span></span>
+<span></span><span></span><span></span>
 </div>
 
-<img src="bee1.png" id="bee1">
-<img src="bee2.png" id="bee2">
-<img src="bee3.png" id="bee3">
+<!-- 🐝 BEES -->
+<img src="bee1.png" class="bee" id="bee1">
+<img src="bee2.png" class="bee" id="bee2">
+<img src="bee3.png" class="bee" id="bee3">
 
+<!-- LETTER -->
 <div id="letter">
 <img src="letter.png" class="letterImg">
 </div>
 
 <div id="hint">Tap the letter</div>
 
+<!-- INVITE -->
 <div id="invite">
 <div class="scrollWrap">
 <div class="scrollTop"></div>
 <div class="scrollBottom"></div>
+
 <div class="cardWrap">
 <img src="invite.png" class="card">
 </div>
+
 </div>
 </div>
 
@@ -263,84 +252,82 @@ to{transform:translateX(120%)}
 </audio>
 
 <script>
-
-const intro=document.getElementById("intro")
-const enterBtn=document.querySelector(".enterBtn")
-const letter=document.getElementById("letter")
-const hint=document.getElementById("hint")
-const invite=document.getElementById("invite")
-const zen=document.getElementById("zen")
-const cardWrap=document.querySelector(".cardWrap")
-
-const bee1=document.getElementById("bee1")
-const bee2=document.getElementById("bee2")
-const bee3=document.getElementById("bee3")
+const intro=document.getElementById("intro");
+const enterBtn=document.querySelector(".enterBtn");
+const bee1=document.getElementById("bee1");
+const bee2=document.getElementById("bee2");
+const bee3=document.getElementById("bee3");
+const letter=document.getElementById("letter");
+const hint=document.getElementById("hint");
+const invite=document.getElementById("invite");
+const zen=document.getElementById("zen");
+const cardWrap=document.querySelector(".cardWrap");
 
 enterBtn.onclick=()=>{
+intro.style.display="none";
 
-intro.style.display="none"
-
-zen.volume=0
-zen.play()
-
-let v=0
+/* music */
+zen.volume=0;
+zen.play();
+let v=0;
 const fade=setInterval(()=>{
-if(v<0.22){v+=0.02;zen.volume=v}
-else clearInterval(fade)
-},200)
+if(v<0.22){v+=0.02;zen.volume=v;}
+else clearInterval(fade);
+},200);
 
-/* bee flight paths */
+/* 🐝 individual bee paths */
+bee1.animate(
+[
+{transform:"translate(0,0)"},
+{transform:"translate(50vw,-20px)"},
+{transform:"translate(100vw,10px)"}
+],
+{duration:4200,easing:"ease-out"}
+);
 
-bee1.animate([
-{left:"-200px",top:"20%"},
-{left:"25%",top:"10%"},
-{left:"35%",top:"35%"}
-],{duration:5200,fill:"forwards",easing:"ease-out"})
+bee2.animate(
+[
+{transform:"translate(0,20px)"},
+{transform:"translate(50vw,-30px)"},
+{transform:"translate(100vw,0px)"}
+],
+{duration:4600,easing:"ease-out"}
+);
 
-bee2.animate([
-{left:"-200px",top:"50%"},
-{left:"40%",top:"25%"},
-{left:"50%",top:"15%"}
-],{duration:5400,fill:"forwards",easing:"ease-out"})
+bee3.animate(
+[
+{transform:"translate(0,-10px)"},
+{transform:"translate(50vw,25px)"},
+{transform:"translate(100vw,-15px)"}
+],
+{duration:5000,easing:"ease-out"}
+);
 
-bee3.animate([
-{left:"-200px",top:"70%"},
-{left:"60%",top:"40%"},
-{left:"65%",top:"35%"}
-],{duration:5600,fill:"forwards",easing:"ease-out"})
-
+/* letter */
 setTimeout(()=>{
-
 letter.animate(
 [
 {transform:"translate(-50%,-220px)",opacity:0},
 {transform:"translate(-50%,20px)",opacity:1},
 {transform:"translate(-50%,0)",opacity:1}
 ],
-{duration:1400,fill:"forwards",easing:"ease-out"}
-)
+{duration:1400,fill:"forwards"}
+);
+},4600);
 
-},5200)
-
-setTimeout(()=>{hint.style.opacity=1},6800)
-
-}
+/* hint */
+setTimeout(()=>{hint.style.opacity=1},7800);
+};
 
 letter.onclick=()=>{
-
-bee1.style.display="none"
-bee2.style.display="none"
-bee3.style.display="none"
-
-letter.style.display="none"
-hint.style.display="none"
-
-invite.style.display="flex"
-
-setTimeout(()=>cardWrap.classList.add("shimmer"),300)
-
-}
-
+bee1.style.display="none";
+bee2.style.display="none";
+bee3.style.display="none";
+letter.style.display="none";
+hint.style.display="none";
+invite.style.display="flex";
+setTimeout(()=>cardWrap.classList.add("shimmer"),300);
+};
 </script>
 
 </body>
