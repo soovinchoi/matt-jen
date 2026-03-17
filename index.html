@@ -100,10 +100,12 @@ opacity:0;
 100%{transform:translateY(-110vh) scale(1.4);opacity:0}
 }
 
-/* 🐝 BEES */
+/* 🐝 BEES (FIXED + HIDDEN INITIALLY) */
 .bee{
-position:absolute;
+position:fixed;
 width:clamp(55px, 10vw, 80px);
+pointer-events:none;
+display:none;
 }
 
 #bee1{ top:6%; left:-140px; }
@@ -237,7 +239,13 @@ const zen=document.getElementById("zen");
 const cardWrap=document.querySelector(".cardWrap");
 
 enterBtn.onclick=()=>{
+
 document.getElementById("intro").style.display="none";
+
+/* show bees */
+bee1.style.display="block";
+bee2.style.display="block";
+bee3.style.display="block";
 
 /* music */
 zen.volume=0;
@@ -248,7 +256,7 @@ if(v<0.22){v+=0.02;zen.volume=v;}
 else clearInterval(fade);
 },200);
 
-/* 🐝 left bees */
+/* 🐝 LEFT BEES */
 bee1.animate([
 {transform:"translate(0,0)"},
 {transform:"translate(40vw,-30px)"},
@@ -263,7 +271,7 @@ bee2.animate([
 {transform:"translate(130vw,0)"}
 ],{duration:5000,easing:"ease-out"});
 
-/* 🐝 right bee */
+/* 🐝 RIGHT BEE */
 bee3.animate([
 {transform:"translate(0,0)"},
 {transform:"translate(-40vw,-40px)"},
