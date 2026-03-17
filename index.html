@@ -103,10 +103,13 @@ opacity:0;
 /* 🐝 BEES */
 .bee{
 position:absolute;
-width:clamp(36px, 8vw, 60px);
-top:4%;
+width:clamp(45px, 9vw, 70px);
 left:-120px;
 }
+
+#bee1{ top:6%; }
+#bee2{ top:14%; }
+#bee3{ top:22%; }
 
 /* LETTER */
 #letter{
@@ -118,9 +121,7 @@ opacity:0;
 cursor:pointer;
 }
 
-.letterImg{
-width:300px;
-}
+.letterImg{ width:300px; }
 
 /* HINT */
 #hint{
@@ -158,17 +159,8 @@ background:#0f0f10;
 z-index:2;
 }
 
-.scrollTop{
-top:0;
-transform-origin:top;
-animation:openTop 1.2s ease-out forwards;
-}
-
-.scrollBottom{
-bottom:0;
-transform-origin:bottom;
-animation:openBottom 1.2s ease-out forwards;
-}
+.scrollTop{top:0;transform-origin:top;animation:openTop 1.2s forwards}
+.scrollBottom{bottom:0;transform-origin:bottom;animation:openBottom 1.2s forwards}
 
 @keyframes openTop{to{transform:scaleY(0)}}
 @keyframes openBottom{to{transform:scaleY(0)}}
@@ -179,33 +171,27 @@ border-radius:8px;
 box-shadow:0 24px 70px rgba(0,0,0,.6);
 }
 
-/* GOLD SHIMMER */
+/* SHIMMER */
 .cardWrap{position:relative}
-
 .cardWrap::after{
 content:'';
 position:absolute;
 inset:0;
 background:linear-gradient(120deg,
 transparent 0%,
-rgba(255,215,120,0) 35%,
 rgba(255,215,120,.55) 50%,
-rgba(255,215,120,0) 65%,
 transparent 100%);
 transform:translateX(-120%);
 }
-
 .cardWrap.shimmer::after{
-animation:goldSweep 1.8s ease-out forwards;
+animation:goldSweep 1.8s forwards;
 }
-
 @keyframes goldSweep{to{transform:translateX(120%)}}
 </style>
 </head>
 
 <body>
 
-<!-- INTRO -->
 <div id="intro">
 <div>
 <div class="title">SPA210</div>
@@ -213,46 +199,34 @@ animation:goldSweep 1.8s ease-out forwards;
 </div>
 
 <img src="spa.png" class="heroImg">
-
 <div class="enterBtn">ENTER</div>
 </div>
 
-<!-- STEAM -->
-<div class="steam">
-<span></span><span></span><span></span>
-</div>
+<div class="steam"><span></span><span></span><span></span></div>
 
-<!-- 🐝 BEES -->
+<!-- BEES -->
 <img src="bee1.png" class="bee" id="bee1">
 <img src="bee2.png" class="bee" id="bee2">
 <img src="bee3.png" class="bee" id="bee3">
 
-<!-- LETTER -->
-<div id="letter">
-<img src="letter.png" class="letterImg">
-</div>
-
+<div id="letter"><img src="letter.png" class="letterImg"></div>
 <div id="hint">Tap the letter</div>
 
-<!-- INVITE -->
 <div id="invite">
 <div class="scrollWrap">
 <div class="scrollTop"></div>
 <div class="scrollBottom"></div>
-
 <div class="cardWrap">
 <img src="invite.png" class="card">
 </div>
-
 </div>
 </div>
 
 <audio id="zen" loop>
-<source src="zen.mp3" type="audio/mpeg">
+<source src="zen.mp3">
 </audio>
 
 <script>
-const intro=document.getElementById("intro");
 const enterBtn=document.querySelector(".enterBtn");
 const bee1=document.getElementById("bee1");
 const bee2=document.getElementById("bee2");
@@ -264,7 +238,8 @@ const zen=document.getElementById("zen");
 const cardWrap=document.querySelector(".cardWrap");
 
 enterBtn.onclick=()=>{
-intro.style.display="none";
+
+document.getElementById("intro").style.display="none";
 
 /* music */
 zen.volume=0;
@@ -275,44 +250,35 @@ if(v<0.22){v+=0.02;zen.volume=v;}
 else clearInterval(fade);
 },200);
 
-/* 🐝 individual bee paths */
-bee1.animate(
-[
+/* 🐝 DIFFERENT PATHS */
+bee1.animate([
 {transform:"translate(0,0)"},
-{transform:"translate(50vw,-20px)"},
-{transform:"translate(100vw,10px)"}
-],
-{duration:4200,easing:"ease-out"}
-);
+{transform:"translate(30vw,-30px)"},
+{transform:"translate(70vw,10px)"},
+{transform:"translate(110vw,-10px)"}
+],{duration:4200,easing:"ease-out"});
 
-bee2.animate(
-[
-{transform:"translate(0,20px)"},
-{transform:"translate(50vw,-30px)"},
-{transform:"translate(100vw,0px)"}
-],
-{duration:4600,easing:"ease-out"}
-);
+bee2.animate([
+{transform:"translate(0,0)"},
+{transform:"translate(40vw,40px)"},
+{transform:"translate(80vw,-20px)"},
+{transform:"translate(120vw,0)"}
+],{duration:5000,easing:"ease-out"});
 
-bee3.animate(
-[
-{transform:"translate(0,-10px)"},
-{transform:"translate(50vw,25px)"},
-{transform:"translate(100vw,-15px)"}
-],
-{duration:5000,easing:"ease-out"}
-);
+bee3.animate([
+{transform:"translate(0,0)"},
+{transform:"translate(35vw,-50px)"},
+{transform:"translate(75vw,30px)"},
+{transform:"translate(115vw,-20px)"}
+],{duration:4600,easing:"ease-out"});
 
 /* letter */
 setTimeout(()=>{
-letter.animate(
-[
+letter.animate([
 {transform:"translate(-50%,-220px)",opacity:0},
 {transform:"translate(-50%,20px)",opacity:1},
 {transform:"translate(-50%,0)",opacity:1}
-],
-{duration:1400,fill:"forwards"}
-);
+],{duration:1400,fill:"forwards"});
 },4600);
 
 /* hint */
