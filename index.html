@@ -27,12 +27,11 @@ html,body{
   text-align:center;
 }
 
-/* stack content */
-.introStack{
+.stack{
   display:flex;
   flex-direction:column;
   align-items:center;
-  gap:20px;
+  gap:18px;
 }
 
 /* text */
@@ -51,9 +50,9 @@ html,body{
 
 /* image */
 .heroImg{
-  width:90vw;
-  max-width:520px;
-  max-height:60vh;
+  width:85vw;
+  max-width:480px;
+  max-height:55vh;
   object-fit:contain;
   border-radius:10px;
   box-shadow:0 20px 60px rgba(0,0,0,.5);
@@ -71,39 +70,12 @@ html,body{
   cursor:pointer;
 }
 
-/* ===== STEAM ===== */
-.steam{
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-}
-
-.steam span{
-  position:absolute;
-  bottom:-100px;
-  width:120px;
-  height:120px;
-  background:radial-gradient(circle,rgba(255,255,255,.15),transparent);
-  border-radius:50%;
-  filter:blur(8px);
-  animation:steamUp linear infinite;
-}
-
-.steam span:nth-child(1){left:10%;animation-duration:20s}
-.steam span:nth-child(2){left:40%;animation-duration:24s}
-.steam span:nth-child(3){left:70%;animation-duration:22s}
-
-@keyframes steamUp{
-  0%{transform:translateY(0);opacity:0}
-  20%{opacity:.2}
-  100%{transform:translateY(-100vh);opacity:0}
-}
-
 /* ===== BEES ===== */
 .bee{
   position:fixed;
   width:clamp(55px,10vw,75px);
   display:none;
+  pointer-events:none;
 }
 
 #bee1{ top:10%; left:-120px; }
@@ -121,7 +93,7 @@ html,body{
 }
 
 .letterImg{
-  width:clamp(220px,50vw,320px);
+  width:clamp(220px,50vw,300px);
 }
 
 /* ===== HINT ===== */
@@ -132,15 +104,16 @@ html,body{
   transform:translateX(-50%);
   opacity:0;
   font-family:'Cinzel', serif;
+  letter-spacing:3px;
 }
 
 /* ===== INVITE ===== */
 #invite{
   position:fixed;
-  inset:0;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
   display:none;
-  align-items:center;
-  justify-content:center;
 }
 
 .card{
@@ -154,17 +127,12 @@ html,body{
 
 <!-- INTRO -->
 <div id="intro">
-  <div class="introStack">
+  <div class="stack">
     <div class="title">SPA210</div>
     <div class="subtitle">PRIVATE OPENING</div>
     <img src="spa.png" class="heroImg">
     <div class="enterBtn">ENTER</div>
   </div>
-</div>
-
-<!-- STEAM -->
-<div class="steam">
-<span></span><span></span><span></span>
 </div>
 
 <!-- BEES -->
@@ -210,20 +178,25 @@ bee3.style.display="block";
 zen.volume=0.3;
 zen.play();
 
-/* bees */
-bee1.animate([{transform:"translate(0,0)"},{transform:"translate(100vw,-20px)"}],{duration:4200});
-bee2.animate([{transform:"translate(0,0)"},{transform:"translate(110vw,20px)"}],{duration:5000});
-bee3.animate([{transform:"translate(0,0)"},{transform:"translate(-100vw,-30px)"}],{duration:4600});
+/* bees motion */
+bee1.animate([
+{transform:"translate(0,0)"},
+{transform:"translate(100vw,-20px)"}
+],{duration:4200});
+
+bee2.animate([
+{transform:"translate(0,0)"},
+{transform:"translate(110vw,20px)"}
+],{duration:5000});
+
+bee3.animate([
+{transform:"translate(0,0)"},
+{transform:"translate(-100vw,-30px)"}
+],{duration:4600});
 
 /* letter */
-setTimeout(()=>{
-letter.style.opacity=1;
-},4600);
-
-/* hint */
-setTimeout(()=>{
-hint.style.opacity=1;
-},7800);
+setTimeout(()=>{letter.style.opacity=1},4600);
+setTimeout(()=>{hint.style.opacity=1},7800);
 };
 
 letter.onclick=()=>{
@@ -232,7 +205,7 @@ bee2.style.display="none";
 bee3.style.display="none";
 letter.style.display="none";
 hint.style.display="none";
-invite.style.display="flex";
+invite.style.display="block";
 };
 </script>
 
