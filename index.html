@@ -17,17 +17,24 @@ font-family:'Cormorant Garamond', serif;
 color:#f4f1ea;
 }
 
-/* ===== INTRO (TRUE CENTER — ORIGINAL STYLE) ===== */
+/* ===== INTRO (TRUE CENTER FIX) ===== */
 #intro{
 position:fixed;
 inset:0;
 display:flex;
-flex-direction:column;
 align-items:center;
 justify-content:center;
-gap:24px;
 z-index:10;
+}
+
+.introCenter{
+position:relative;
+top:-3vh; /* ← key fix */
+display:flex;
+flex-direction:column;
+align-items:center;
 text-align:center;
+gap:18px;
 }
 
 .title{
@@ -97,7 +104,7 @@ opacity:0;
 /* ===== BEES ===== */
 .bee{
 position:fixed;
-width:clamp(50px,9vw,70px);
+width:clamp(55px,10vw,80px);
 pointer-events:none;
 display:none;
 }
@@ -182,33 +189,42 @@ animation:goldSweep 1.8s forwards;
 
 <body>
 
+<!-- INTRO -->
 <div id="intro">
-<div class="title">SPA210</div>
-<div class="subtitle">PRIVATE OPENING</div>
-<img src="spa.png" class="heroImg">
-<div class="enterBtn">ENTER</div>
+  <div class="introCenter">
+    <div class="title">SPA210</div>
+    <div class="subtitle">PRIVATE OPENING</div>
+    <img src="spa.png" class="heroImg">
+    <div class="enterBtn">ENTER</div>
+  </div>
 </div>
 
+<!-- STEAM -->
 <div class="steam"><span></span><span></span><span></span></div>
 
+<!-- BEES -->
 <img src="bee1.png" class="bee" id="bee1">
 <img src="bee2.png" class="bee" id="bee2">
 <img src="bee3.png" class="bee" id="bee3">
 
+<!-- LETTER -->
 <div id="letter"><img src="letter.png" class="letterImg"></div>
 <div id="hint">Tap the letter</div>
 
+<!-- INVITE -->
 <div id="invite">
-<div class="scrollWrap">
-<div class="scrollTop"></div>
-<div class="scrollBottom"></div>
-<div class="cardWrap">
-<img src="invite.png" class="card">
-</div>
-</div>
+  <div class="scrollWrap">
+    <div class="scrollTop"></div>
+    <div class="scrollBottom"></div>
+    <div class="cardWrap">
+      <img src="invite.png" class="card">
+    </div>
+  </div>
 </div>
 
-<audio id="zen" loop><source src="zen.mp3"></audio>
+<audio id="zen" loop>
+<source src="zen.mp3">
+</audio>
 
 <script>
 const enterBtn=document.querySelector(".enterBtn");
@@ -238,16 +254,31 @@ if(v<0.22){v+=0.02;zen.volume=v;}
 else clearInterval(fade);
 },200);
 
-/* bees */
-bee1.animate([{transform:"translate(0,0)"},{transform:"translate(100vw,-20px)"}],{duration:4200});
-bee2.animate([{transform:"translate(0,0)"},{transform:"translate(110vw,20px)"}],{duration:5000});
-bee3.animate([{transform:"translate(0,0)"},{transform:"translate(-100vw,-30px)"}],{duration:4600});
+/* bees movement */
+bee1.animate([
+{transform:"translate(0,0)"},
+{transform:"translate(100vw,-20px)"}
+],{duration:4200});
+
+bee2.animate([
+{transform:"translate(0,0)"},
+{transform:"translate(110vw,20px)"}
+],{duration:5000});
+
+bee3.animate([
+{transform:"translate(0,0)"},
+{transform:"translate(-100vw,-30px)"}
+],{duration:4600});
 
 /* letter */
 setTimeout(()=>{
-letter.animate([{transform:"translate(-50%,-220px)",opacity:0},{transform:"translate(-50%,0)",opacity:1}],{duration:1200,fill:"forwards"});
+letter.animate([
+{transform:"translate(-50%,-220px)",opacity:0},
+{transform:"translate(-50%,0)",opacity:1}
+],{duration:1200,fill:"forwards"});
 },4600);
 
+/* hint */
 setTimeout(()=>{hint.style.opacity=1},7800);
 };
 
@@ -263,4 +294,4 @@ setTimeout(()=>cardWrap.classList.add("shimmer"),300);
 </script>
 
 </body>
-</html
+</html>
