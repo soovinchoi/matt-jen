@@ -17,23 +17,33 @@ font-family:'Cormorant Garamond', serif;
 color:#f4f1ea;
 }
 
-/* INTRO */
+/* ===== INTRO (FIXED CENTER) ===== */
 #intro{
 position:fixed;
 inset:0;
+display:flex;
+align-items:center;
+justify-content:center;
+z-index:10;
+}
+
+.introInner{
 display:flex;
 flex-direction:column;
 align-items:center;
 justify-content:center;
 gap:28px;
-z-index:10;
+width:100%;
+max-width:520px;
+padding:20px;
+box-sizing:border-box;
+text-align:center;
 }
 
 .title{
 font-family:'Cinzel', serif;
 font-size:28px;
 letter-spacing:.22em;
-text-align:center;
 }
 
 .subtitle{
@@ -41,12 +51,10 @@ font-family:'Cinzel', serif;
 font-size:13px;
 letter-spacing:.35em;
 opacity:.85;
-text-align:center;
 }
 
 .heroImg{
-width:88vw;
-max-width:520px;
+width:100%;
 max-height:55vh;
 object-fit:contain;
 box-shadow:0 24px 70px rgba(0,0,0,.55);
@@ -65,7 +73,7 @@ letter-spacing:.25em;
 cursor:pointer;
 }
 
-/* STEAM */
+/* ===== STEAM ===== */
 .steam{
 position:fixed;
 inset:0;
@@ -100,7 +108,7 @@ opacity:0;
 100%{transform:translateY(-110vh) scale(1.4);opacity:0}
 }
 
-/* 🐝 BEES (FIXED + HIDDEN INITIALLY) */
+/* ===== BEES ===== */
 .bee{
 position:fixed;
 width:clamp(55px, 10vw, 80px);
@@ -112,7 +120,7 @@ display:none;
 #bee2{ top:16%; left:-160px; }
 #bee3{ top:12%; right:-140px; }
 
-/* LETTER */
+/* ===== LETTER ===== */
 #letter{
 position:absolute;
 top:42%;
@@ -124,7 +132,7 @@ cursor:pointer;
 
 .letterImg{ width:300px; }
 
-/* HINT */
+/* ===== HINT ===== */
 #hint{
 position:absolute;
 top:calc(42% + 320px);
@@ -136,7 +144,7 @@ letter-spacing:4px;
 opacity:0;
 }
 
-/* INVITE */
+/* ===== INVITE ===== */
 #invite{
 position:fixed;
 inset:0;
@@ -172,7 +180,7 @@ border-radius:8px;
 box-shadow:0 24px 70px rgba(0,0,0,.6);
 }
 
-/* SHIMMER */
+/* ===== SHIMMER ===== */
 .cardWrap{position:relative}
 .cardWrap::after{
 content:'';
@@ -193,34 +201,45 @@ animation:goldSweep 1.8s forwards;
 
 <body>
 
+<!-- INTRO -->
 <div id="intro">
-<div>
-<div class="title">SPA210</div>
-<div class="subtitle">PRIVATE OPENING</div>
+  <div class="introInner">
+
+    <div>
+      <div class="title">SPA210</div>
+      <div class="subtitle">PRIVATE OPENING</div>
+    </div>
+
+    <img src="spa.png" class="heroImg">
+
+    <div class="enterBtn">ENTER</div>
+
+  </div>
 </div>
 
-<img src="spa.png" class="heroImg">
-<div class="enterBtn">ENTER</div>
-</div>
-
+<!-- STEAM -->
 <div class="steam"><span></span><span></span><span></span></div>
 
-<!-- 🐝 BEES -->
+<!-- BEES -->
 <img src="bee1.png" class="bee" id="bee1">
 <img src="bee2.png" class="bee" id="bee2">
 <img src="bee3.png" class="bee" id="bee3">
 
+<!-- LETTER -->
 <div id="letter"><img src="letter.png" class="letterImg"></div>
 <div id="hint">Tap the letter</div>
 
+<!-- INVITE -->
 <div id="invite">
-<div class="scrollWrap">
-<div class="scrollTop"></div>
-<div class="scrollBottom"></div>
-<div class="cardWrap">
-<img src="invite.png" class="card">
-</div>
-</div>
+  <div class="scrollWrap">
+    <div class="scrollTop"></div>
+    <div class="scrollBottom"></div>
+
+    <div class="cardWrap">
+      <img src="invite.png" class="card">
+    </div>
+
+  </div>
 </div>
 
 <audio id="zen" loop>
@@ -256,7 +275,7 @@ if(v<0.22){v+=0.02;zen.volume=v;}
 else clearInterval(fade);
 },200);
 
-/* 🐝 LEFT BEES */
+/* bees motion */
 bee1.animate([
 {transform:"translate(0,0)"},
 {transform:"translate(40vw,-30px)"},
@@ -271,7 +290,6 @@ bee2.animate([
 {transform:"translate(130vw,0)"}
 ],{duration:5000,easing:"ease-out"});
 
-/* 🐝 RIGHT BEE */
 bee3.animate([
 {transform:"translate(0,0)"},
 {transform:"translate(-40vw,-40px)"},
