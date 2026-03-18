@@ -9,181 +9,144 @@
 
 <style>
 html,body{
-margin:0;
-height:100%;
-overflow:hidden;
-background:#0f0f10;
-font-family:'Cormorant Garamond', serif;
-color:#f4f1ea;
+  margin:0;
+  height:100%;
+  background:#0f0f10;
+  font-family:'Cormorant Garamond', serif;
+  color:#f4f1ea;
+  overflow:hidden;
 }
 
-/* ===== INTRO (TRUE CENTER FIX) ===== */
+/* ===== TRUE CENTER ===== */
 #intro{
-position:fixed;
-inset:0;
-display:flex;
-align-items:center;
-justify-content:center;
-z-index:10;
+  position:fixed;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
 }
 
-.introCenter{
-position:relative;
-top:-3vh; /* ← key fix */
-display:flex;
-flex-direction:column;
-align-items:center;
-text-align:center;
-gap:18px;
+/* stack content */
+.introStack{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:20px;
 }
 
+/* text */
 .title{
-font-family:'Cinzel', serif;
-font-size:clamp(24px,5vw,32px);
-letter-spacing:.22em;
+  font-family:'Cinzel', serif;
+  font-size:clamp(24px,5vw,32px);
+  letter-spacing:.22em;
 }
 
 .subtitle{
-font-family:'Cinzel', serif;
-font-size:clamp(11px,3vw,14px);
-letter-spacing:.35em;
-opacity:.85;
+  font-family:'Cinzel', serif;
+  font-size:clamp(11px,3vw,14px);
+  letter-spacing:.35em;
+  opacity:.85;
 }
 
+/* image */
 .heroImg{
-width:90vw;
-max-width:520px;
-max-height:60vh;
-object-fit:contain;
-box-shadow:0 24px 70px rgba(0,0,0,.55);
-border-radius:10px;
+  width:90vw;
+  max-width:520px;
+  max-height:60vh;
+  object-fit:contain;
+  border-radius:10px;
+  box-shadow:0 20px 60px rgba(0,0,0,.5);
 }
 
+/* button */
 .enterBtn{
-padding:12px 30px;
-border-radius:999px;
-border:1.5px solid #f4f1ea;
-background:transparent;
-color:#f4f1ea;
-font-family:'Cinzel', serif;
-font-size:13px;
-letter-spacing:.25em;
-cursor:pointer;
+  padding:12px 28px;
+  border-radius:999px;
+  border:1.5px solid #f4f1ea;
+  background:transparent;
+  color:#f4f1ea;
+  font-family:'Cinzel', serif;
+  letter-spacing:.25em;
+  cursor:pointer;
 }
 
 /* ===== STEAM ===== */
 .steam{
-position:fixed;
-inset:0;
-pointer-events:none;
-z-index:1;
+  position:fixed;
+  inset:0;
+  pointer-events:none;
 }
 
 .steam span{
-position:absolute;
-bottom:-120px;
-width:140px;
-height:140px;
-border-radius:50%;
-background:radial-gradient(circle,rgba(255,255,255,.16),transparent);
-filter:blur(10px);
-animation:steamUp linear infinite;
-opacity:0;
+  position:absolute;
+  bottom:-100px;
+  width:120px;
+  height:120px;
+  background:radial-gradient(circle,rgba(255,255,255,.15),transparent);
+  border-radius:50%;
+  filter:blur(8px);
+  animation:steamUp linear infinite;
 }
 
-.steam span:nth-child(1){left:10%;animation-duration:22s}
-.steam span:nth-child(2){left:40%;animation-duration:26s}
-.steam span:nth-child(3){left:70%;animation-duration:24s}
+.steam span:nth-child(1){left:10%;animation-duration:20s}
+.steam span:nth-child(2){left:40%;animation-duration:24s}
+.steam span:nth-child(3){left:70%;animation-duration:22s}
 
 @keyframes steamUp{
-0%{transform:translateY(0);opacity:0}
-20%{opacity:.2}
-100%{transform:translateY(-100vh);opacity:0}
+  0%{transform:translateY(0);opacity:0}
+  20%{opacity:.2}
+  100%{transform:translateY(-100vh);opacity:0}
 }
 
 /* ===== BEES ===== */
 .bee{
-position:fixed;
-width:clamp(55px,10vw,80px);
-pointer-events:none;
-display:none;
+  position:fixed;
+  width:clamp(55px,10vw,75px);
+  display:none;
 }
 
-#bee1{ top:8%; left:-120px; }
-#bee2{ top:18%; left:-140px; }
-#bee3{ top:12%; right:-120px; }
+#bee1{ top:10%; left:-120px; }
+#bee2{ top:20%; left:-140px; }
+#bee3{ top:15%; right:-120px; }
 
 /* ===== LETTER ===== */
 #letter{
-position:absolute;
-top:45%;
-left:50%;
-transform:translate(-50%,-50%);
-opacity:0;
-cursor:pointer;
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  opacity:0;
+  cursor:pointer;
 }
 
-.letterImg{ width:clamp(220px,50vw,320px); }
+.letterImg{
+  width:clamp(220px,50vw,320px);
+}
 
 /* ===== HINT ===== */
 #hint{
-position:absolute;
-top:calc(45% + 180px);
-left:50%;
-transform:translateX(-50%);
-font-family:'Cinzel', serif;
-font-size:14px;
-letter-spacing:3px;
-opacity:0;
+  position:fixed;
+  top:calc(50% + 160px);
+  left:50%;
+  transform:translateX(-50%);
+  opacity:0;
+  font-family:'Cinzel', serif;
 }
 
 /* ===== INVITE ===== */
 #invite{
-position:fixed;
-inset:0;
-display:none;
-align-items:center;
-justify-content:center;
+  position:fixed;
+  inset:0;
+  display:none;
+  align-items:center;
+  justify-content:center;
 }
-
-.scrollWrap{
-position:relative;
-width:90vw;
-max-width:760px;
-}
-
-.scrollTop,.scrollBottom{
-position:absolute;
-width:100%;
-height:50%;
-background:#0f0f10;
-z-index:2;
-}
-
-.scrollTop{top:0;transform-origin:top;animation:openTop 1.2s forwards}
-.scrollBottom{bottom:0;transform-origin:bottom;animation:openBottom 1.2s forwards}
-
-@keyframes openTop{to{transform:scaleY(0)}}
-@keyframes openBottom{to{transform:scaleY(0)}}
 
 .card{
-width:100%;
-border-radius:8px;
+  width:90vw;
+  max-width:700px;
 }
-
-/* SHIMMER */
-.cardWrap{position:relative}
-.cardWrap::after{
-content:'';
-position:absolute;
-inset:0;
-background:linear-gradient(120deg,transparent,rgba(255,215,120,.5),transparent);
-transform:translateX(-120%);
-}
-.cardWrap.shimmer::after{
-animation:goldSweep 1.8s forwards;
-}
-@keyframes goldSweep{to{transform:translateX(120%)}}
 </style>
 </head>
 
@@ -191,7 +154,7 @@ animation:goldSweep 1.8s forwards;
 
 <!-- INTRO -->
 <div id="intro">
-  <div class="introCenter">
+  <div class="introStack">
     <div class="title">SPA210</div>
     <div class="subtitle">PRIVATE OPENING</div>
     <img src="spa.png" class="heroImg">
@@ -200,7 +163,9 @@ animation:goldSweep 1.8s forwards;
 </div>
 
 <!-- STEAM -->
-<div class="steam"><span></span><span></span><span></span></div>
+<div class="steam">
+<span></span><span></span><span></span>
+</div>
 
 <!-- BEES -->
 <img src="bee1.png" class="bee" id="bee1">
@@ -208,18 +173,15 @@ animation:goldSweep 1.8s forwards;
 <img src="bee3.png" class="bee" id="bee3">
 
 <!-- LETTER -->
-<div id="letter"><img src="letter.png" class="letterImg"></div>
+<div id="letter">
+  <img src="letter.png" class="letterImg">
+</div>
+
 <div id="hint">Tap the letter</div>
 
 <!-- INVITE -->
 <div id="invite">
-  <div class="scrollWrap">
-    <div class="scrollTop"></div>
-    <div class="scrollBottom"></div>
-    <div class="cardWrap">
-      <img src="invite.png" class="card">
-    </div>
-  </div>
+  <img src="invite.png" class="card">
 </div>
 
 <audio id="zen" loop>
@@ -235,7 +197,6 @@ const letter=document.getElementById("letter");
 const hint=document.getElementById("hint");
 const invite=document.getElementById("invite");
 const zen=document.getElementById("zen");
-const cardWrap=document.querySelector(".cardWrap");
 
 enterBtn.onclick=()=>{
 document.getElementById("intro").style.display="none";
@@ -246,40 +207,23 @@ bee2.style.display="block";
 bee3.style.display="block";
 
 /* music */
-zen.volume=0;
+zen.volume=0.3;
 zen.play();
-let v=0;
-const fade=setInterval(()=>{
-if(v<0.22){v+=0.02;zen.volume=v;}
-else clearInterval(fade);
-},200);
 
-/* bees movement */
-bee1.animate([
-{transform:"translate(0,0)"},
-{transform:"translate(100vw,-20px)"}
-],{duration:4200});
-
-bee2.animate([
-{transform:"translate(0,0)"},
-{transform:"translate(110vw,20px)"}
-],{duration:5000});
-
-bee3.animate([
-{transform:"translate(0,0)"},
-{transform:"translate(-100vw,-30px)"}
-],{duration:4600});
+/* bees */
+bee1.animate([{transform:"translate(0,0)"},{transform:"translate(100vw,-20px)"}],{duration:4200});
+bee2.animate([{transform:"translate(0,0)"},{transform:"translate(110vw,20px)"}],{duration:5000});
+bee3.animate([{transform:"translate(0,0)"},{transform:"translate(-100vw,-30px)"}],{duration:4600});
 
 /* letter */
 setTimeout(()=>{
-letter.animate([
-{transform:"translate(-50%,-220px)",opacity:0},
-{transform:"translate(-50%,0)",opacity:1}
-],{duration:1200,fill:"forwards"});
+letter.style.opacity=1;
 },4600);
 
 /* hint */
-setTimeout(()=>{hint.style.opacity=1},7800);
+setTimeout(()=>{
+hint.style.opacity=1;
+},7800);
 };
 
 letter.onclick=()=>{
@@ -289,7 +233,6 @@ bee3.style.display="none";
 letter.style.display="none";
 hint.style.display="none";
 invite.style.display="flex";
-setTimeout(()=>cardWrap.classList.add("shimmer"),300);
 };
 </script>
 
