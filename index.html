@@ -17,58 +17,49 @@ font-family:'Cormorant Garamond', serif;
 color:#f4f1ea;
 }
 
-/* ===== INTRO (FIXED CENTER) ===== */
+/* ===== INTRO (TRUE CENTER — ORIGINAL STYLE) ===== */
 #intro{
 position:fixed;
 inset:0;
 display:flex;
-align-items:center;
-justify-content:center;
-z-index:10;
-}
-
-.introInner{
-display:flex;
 flex-direction:column;
 align-items:center;
 justify-content:center;
-gap:28px;
-width:100%;
-max-width:520px;
-padding:20px;
-box-sizing:border-box;
+gap:24px;
+z-index:10;
 text-align:center;
 }
 
 .title{
 font-family:'Cinzel', serif;
-font-size:28px;
+font-size:clamp(24px,5vw,32px);
 letter-spacing:.22em;
 }
 
 .subtitle{
 font-family:'Cinzel', serif;
-font-size:13px;
+font-size:clamp(11px,3vw,14px);
 letter-spacing:.35em;
 opacity:.85;
 }
 
 .heroImg{
-width:100%;
-max-height:55vh;
+width:90vw;
+max-width:520px;
+max-height:60vh;
 object-fit:contain;
 box-shadow:0 24px 70px rgba(0,0,0,.55);
 border-radius:10px;
 }
 
 .enterBtn{
-padding:14px 36px;
+padding:12px 30px;
 border-radius:999px;
 border:1.5px solid #f4f1ea;
 background:transparent;
 color:#f4f1ea;
 font-family:'Cinzel', serif;
-font-size:14px;
+font-size:13px;
 letter-spacing:.25em;
 cursor:pointer;
 }
@@ -78,69 +69,64 @@ cursor:pointer;
 position:fixed;
 inset:0;
 pointer-events:none;
-overflow:hidden;
 z-index:1;
 }
 
 .steam span{
 position:absolute;
 bottom:-120px;
-width:160px;
-height:160px;
+width:140px;
+height:140px;
 border-radius:50%;
-background:radial-gradient(circle,
-rgba(255,255,255,.16) 0%,
-rgba(255,255,255,.07) 40%,
-transparent 70%);
+background:radial-gradient(circle,rgba(255,255,255,.16),transparent);
 filter:blur(10px);
 animation:steamUp linear infinite;
 opacity:0;
 }
 
 .steam span:nth-child(1){left:10%;animation-duration:22s}
-.steam span:nth-child(2){left:30%;animation-duration:26s;animation-delay:4s}
-.steam span:nth-child(3){left:55%;animation-duration:24s;animation-delay:2s}
+.steam span:nth-child(2){left:40%;animation-duration:26s}
+.steam span:nth-child(3){left:70%;animation-duration:24s}
 
 @keyframes steamUp{
-0%{transform:translateY(0) scale(.8);opacity:0}
-15%{opacity:.25}
-50%{opacity:.18}
-100%{transform:translateY(-110vh) scale(1.4);opacity:0}
+0%{transform:translateY(0);opacity:0}
+20%{opacity:.2}
+100%{transform:translateY(-100vh);opacity:0}
 }
 
 /* ===== BEES ===== */
 .bee{
 position:fixed;
-width:clamp(55px, 10vw, 80px);
+width:clamp(50px,9vw,70px);
 pointer-events:none;
 display:none;
 }
 
-#bee1{ top:6%; left:-140px; }
-#bee2{ top:16%; left:-160px; }
-#bee3{ top:12%; right:-140px; }
+#bee1{ top:8%; left:-120px; }
+#bee2{ top:18%; left:-140px; }
+#bee3{ top:12%; right:-120px; }
 
 /* ===== LETTER ===== */
 #letter{
 position:absolute;
-top:42%;
+top:45%;
 left:50%;
-transform:translateX(-50%);
+transform:translate(-50%,-50%);
 opacity:0;
 cursor:pointer;
 }
 
-.letterImg{ width:300px; }
+.letterImg{ width:clamp(220px,50vw,320px); }
 
 /* ===== HINT ===== */
 #hint{
 position:absolute;
-top:calc(42% + 320px);
+top:calc(45% + 180px);
 left:50%;
 transform:translateX(-50%);
 font-family:'Cinzel', serif;
-font-size:16px;
-letter-spacing:4px;
+font-size:14px;
+letter-spacing:3px;
 opacity:0;
 }
 
@@ -161,7 +147,6 @@ max-width:760px;
 
 .scrollTop,.scrollBottom{
 position:absolute;
-left:0;
 width:100%;
 height:50%;
 background:#0f0f10;
@@ -177,19 +162,15 @@ z-index:2;
 .card{
 width:100%;
 border-radius:8px;
-box-shadow:0 24px 70px rgba(0,0,0,.6);
 }
 
-/* ===== SHIMMER ===== */
+/* SHIMMER */
 .cardWrap{position:relative}
 .cardWrap::after{
 content:'';
 position:absolute;
 inset:0;
-background:linear-gradient(120deg,
-transparent 0%,
-rgba(255,215,120,.55) 50%,
-transparent 100%);
+background:linear-gradient(120deg,transparent,rgba(255,215,120,.5),transparent);
 transform:translateX(-120%);
 }
 .cardWrap.shimmer::after{
@@ -201,50 +182,33 @@ animation:goldSweep 1.8s forwards;
 
 <body>
 
-<!-- INTRO -->
 <div id="intro">
-  <div class="introInner">
-
-    <div>
-      <div class="title">SPA210</div>
-      <div class="subtitle">PRIVATE OPENING</div>
-    </div>
-
-    <img src="spa.png" class="heroImg">
-
-    <div class="enterBtn">ENTER</div>
-
-  </div>
+<div class="title">SPA210</div>
+<div class="subtitle">PRIVATE OPENING</div>
+<img src="spa.png" class="heroImg">
+<div class="enterBtn">ENTER</div>
 </div>
 
-<!-- STEAM -->
 <div class="steam"><span></span><span></span><span></span></div>
 
-<!-- BEES -->
 <img src="bee1.png" class="bee" id="bee1">
 <img src="bee2.png" class="bee" id="bee2">
 <img src="bee3.png" class="bee" id="bee3">
 
-<!-- LETTER -->
 <div id="letter"><img src="letter.png" class="letterImg"></div>
 <div id="hint">Tap the letter</div>
 
-<!-- INVITE -->
 <div id="invite">
-  <div class="scrollWrap">
-    <div class="scrollTop"></div>
-    <div class="scrollBottom"></div>
-
-    <div class="cardWrap">
-      <img src="invite.png" class="card">
-    </div>
-
-  </div>
+<div class="scrollWrap">
+<div class="scrollTop"></div>
+<div class="scrollBottom"></div>
+<div class="cardWrap">
+<img src="invite.png" class="card">
+</div>
+</div>
 </div>
 
-<audio id="zen" loop>
-<source src="zen.mp3">
-</audio>
+<audio id="zen" loop><source src="zen.mp3"></audio>
 
 <script>
 const enterBtn=document.querySelector(".enterBtn");
@@ -258,7 +222,6 @@ const zen=document.getElementById("zen");
 const cardWrap=document.querySelector(".cardWrap");
 
 enterBtn.onclick=()=>{
-
 document.getElementById("intro").style.display="none";
 
 /* show bees */
@@ -275,38 +238,16 @@ if(v<0.22){v+=0.02;zen.volume=v;}
 else clearInterval(fade);
 },200);
 
-/* bees motion */
-bee1.animate([
-{transform:"translate(0,0)"},
-{transform:"translate(40vw,-30px)"},
-{transform:"translate(80vw,10px)"},
-{transform:"translate(120vw,-10px)"}
-],{duration:4200,easing:"ease-out"});
-
-bee2.animate([
-{transform:"translate(0,0)"},
-{transform:"translate(50vw,40px)"},
-{transform:"translate(90vw,-20px)"},
-{transform:"translate(130vw,0)"}
-],{duration:5000,easing:"ease-out"});
-
-bee3.animate([
-{transform:"translate(0,0)"},
-{transform:"translate(-40vw,-40px)"},
-{transform:"translate(-80vw,20px)"},
-{transform:"translate(-120vw,-10px)"}
-],{duration:4600,easing:"ease-out"});
+/* bees */
+bee1.animate([{transform:"translate(0,0)"},{transform:"translate(100vw,-20px)"}],{duration:4200});
+bee2.animate([{transform:"translate(0,0)"},{transform:"translate(110vw,20px)"}],{duration:5000});
+bee3.animate([{transform:"translate(0,0)"},{transform:"translate(-100vw,-30px)"}],{duration:4600});
 
 /* letter */
 setTimeout(()=>{
-letter.animate([
-{transform:"translate(-50%,-220px)",opacity:0},
-{transform:"translate(-50%,20px)",opacity:1},
-{transform:"translate(-50%,0)",opacity:1}
-],{duration:1400,fill:"forwards"});
+letter.animate([{transform:"translate(-50%,-220px)",opacity:0},{transform:"translate(-50%,0)",opacity:1}],{duration:1200,fill:"forwards"});
 },4600);
 
-/* hint */
 setTimeout(()=>{hint.style.opacity=1},7800);
 };
 
@@ -322,4 +263,4 @@ setTimeout(()=>cardWrap.classList.add("shimmer"),300);
 </script>
 
 </body>
-</html>
+</html
